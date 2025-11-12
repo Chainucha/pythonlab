@@ -3,9 +3,6 @@ import pandas as pd  # For data handling (reading/writing CSV)
 import matplotlib.pyplot as plt  # For plotting bar graphs
 from tkinter import messagebox, Label, Frame, Tk, Entry, Button, END
 import tkinter as tk  # For GUI elements
-from matplotlib.backends.backend_tkagg import (
-    FigureCanvasTkAgg,
-)  # To show plots inside Tkinter
 
 # ---------------------- SAMPLE MOCK DATA ----------------------
 # Used for quick testing — can be written into CSV file with a button click
@@ -98,11 +95,8 @@ def show_graph():
         )
         return
 
-    # Create a Matplotlib figure and axis
-    fig, ax = plt.subplots(figsize=(8, 5))
-
     # Plot bar chart using pandas' built-in plot function
-    df.plot(x="Batmans", kind="bar", figsize=(8, 5), ax=ax)
+    df.plot(x="Batmans", kind="bar", figsize=(8, 5))
 
     # Customize graph labels and layout
     plt.title("Batman Performance Over Years")
@@ -112,11 +106,6 @@ def show_graph():
 
     # Show the graph in a separate Matplotlib window (terminal)
     plt.show()
-
-    # Also embed the same graph inside the Tkinter window
-    canvas = FigureCanvasTkAgg(fig, master=window)
-    canvas.draw()
-    canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
 
 # ---------------------- GUI SETUP SECTION ----------------------
